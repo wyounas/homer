@@ -1,43 +1,42 @@
 # Homer
 
-Homer is a Python package for analysing text.
+Homer is a Python package for analyzing text.
 
-This grew out of a personal need. I am not a native English speaker but interested in writing so I have been using this to improve my writing. Home gives basic insights about writing. I hope others might find it useful.
+It provides information on an overall text as well as on individual paragraphs. It gives insights into readability, length of paragraphs, length of sentences, average sentences per paragraph, average words in a sentence, etc. Further, it tries to identify words that make the text less readable, e.g. zombie nouns, abstract nouns, compulsive hedgers, and intensifiers. It also tracks the frequency of "and" words in the text. (More information on all of these follows in the `Acknowledgements` section.)
 
-This tool is not a strict guide to control your writing. At least, I don't use it that way. I use to guide my writing to make it brief and simpler for the reader whenever possible.
+This software package grew out of a personal need. Since I am not a native English speaker but am interested in writing, I designed and have been using Homer to improve my writing. I hope others will find it useful.
 
-Generally it provides information on paragraphs and sentences so you can sense if writing is getting a bit complex. For example, longer sentences and paragraphs do not make a light reading. Also, it gives a general sense of readability by computing readability scores of the text (using Flesch reading ease and Dale Chall readability scores).
+Please note that this is not a strict guide to control your writing. At least, I don't use it that way. I use it as a guide to make my writing as simple as possible. I strive to write concise paragraphs and sentences as well as use fewer unclear words, and Homer has been helping me. As this software is new, you may well spot bugs, in which case please feel free to open up issues/pull-requests.
 
-Moreover, it gives insights whether the text is using zombie nouns, abstract nouns, compulsive hedgers, intensifiers, abstract nouns and too many "and" words in the text. All of this make text less readable. More information on all of these in the `Acknowledgements` section.
+You can use Homer as a stand-alone package or on the command line. If you run it on the command line, you can get general stats on your article or essay as well as paragraph stats, as shown below.
 
-You can use it as a standalone package or on command line. If you run it on the command line you can get general
-stats on your essay as well as paragraph stats as shown below.
+#####  Article/Essay Stats
 
-#####  Article / Essay Stats
+Running Homer from the command line gives the following insights about the overall text:
 
-It gives your some basic insights about your overall text. If you run it from the command line you will see the following information for the overall text.
-
-* Reading time (in mins)
+* Reading time in minutes (although this will vary some from reader to reader)
 * Readability scores (Flesch reading ease and Dale Chall readability scores)
-* Total paragraphs, sentences and words
+* Total paragraphs, sentences, and words
 * Average sentences per paragraph
 * Average words per sentence
 * "and" frequency
 * Number of zombie nouns, compulsive hedgers, intensifiers, abstract nouns, vague words
-* In the end it lists down the zombie nouns, compulsive hedgers, intensifiers, abstract nouns, and vague words that it finds in the text
+* At the end, it goes on to list the zombie nouns, compulsive hedgers, intensifiers, abstract nouns, and vague words that it found.
+
 
 ![Article stats](docs/article_stats.png)
 
 ##### Paragraph Stats
 
-Pargraph stats point out the following information for _each paragraph_.
+Paragraph stats point out the following information for _each paragraph_:
 
-* Number of sentences, and words
+* Number of sentences and words
 * Average words per sentence
-* longest sentence
+* The longest sentence in the paragraph
 * Readability scores (Flesch reading ease and Dale Chall readability scores)
-* If number of sentences go beyond 5 in a paragraph then it's highlighted in red.
-* Similarly, when number of words go beyond 25 in a sentence then that is also highlighted in red.
+* If the number of sentences is more than five in a paragraph, then Homer gives a warning highlighted in red.
+* Similarly, when the number of words is more than 25 in a sentence, then a warning highlighted in red is given.
+
 
 ![Paragraph stats](docs/paragraph_stats.png)
 
@@ -53,6 +52,18 @@ Use the requirements.txt to install the package.
 pip install -r requirements.txt
 ```
 
+After installing required Python libraries you may need to also install these nltk resources:
+- _punkt_,  _average_perceptron_tagger_, _cmudict_ and _stopwords_
+
+These can download by running the following code from the command line, after activating the virtual environment
+```Python
+>>> import nltk
+>>> nltk.download('punkt')
+# after punkt is install, let's install other packages one by one
+>>> nltk.download('averaged_perceptron_tagger')
+>>>nltk.download('cmudict')
+>>> nltk.download('stopwords')
+```
 ## Usage
 
 ```python
@@ -69,30 +80,30 @@ Tests can be run from the `tests` directory.
 
 ## Authors
 
-* Waqas Younas (waqas.younas@gmail.com)
+* [Waqas Younas](http://blog.wyounas.com) (waqas.younas@gmail.com)
 
 
 ## Acknowledgements
 
-* Steven Pinker's [The Sense of Style: The Thinking Person's Guide to Writing in the 21st Century](https://www.amazon.com/Sense-Style-Thinking-Persons-Writing/dp/0143127799). This gave me quite a few insights. It also prompted me to include tracking of zombie nouns, abstract nouns, complex hedgers and Intensifiers.
+* Steven Pinker's [The Sense of Style: The Thinking Person's Guide to Writing in the 21st Century](https://www.amazon.com/Sense-Style-Thinking-Persons-Writing/dp/0143127799). This book gave me quite a few insights. It also prompted me to include tracking of zombie nouns, abstract nouns, complex hedgers and intensifiers.
+
   - Zombie nouns: https://www.youtube.com/watch?v=dNlkHtMgcPQ
 
   - Abstract nouns: Words such as _approach, assumption, concept, context, framework, process, model, role, strategy, perspective, variable, etc._
 
   - Complex hedgers: These are words such as _apparently, almost, fairly, nearly, partially, predominantly, presumably, rather, relative, seemingly, etc._
 
-  - Intensifiers: Words such as a _very, highly, extremely_.
-
-
+  - Intensifiers: Words such as _very, highly, extremely_.
 
 * Bankspeak:
 The Language
 of World Bank Reports,
-1946–2012: https://litlab.stanford.edu/LiteraryLabPamphlet9.pdf. This gave me few ideas. The idea to keep track of "and" words and the vague words in a text is taken from here.
+1946–2012: https://litlab.stanford.edu/LiteraryLabPamphlet9.pdf. This source also gave me a few ideas. The idea to keep track of "and" and the vague words in a text was taken from here.
 
-    -  "and" frequency: Basically it is the number of times the word "and" is used in the text (given as percentage of total text). I try to keep under 3 %.
+    -  "and" frequency: Basically it is the number of times the word "and" is used in the text (given as a percentage of total text). I try to keep it under 3 %.
 
-    - Vague words is list of words I compiled after reading the above report. Unnecessairly using these words can make the text more abstract. These are words such as _derivative, fair value, portfolio, evaluation, competitiveness, reform, growth, capacity, progress, stability, protection, access, sustainable, etc._
+    - Vague words is a list of words I compiled after reading the above report.  Using these words unnecessarily, or without giving them the proper context, can make a text more abstract. These are words such as _derivative, fair value, portfolio, evaluation, strategy, competitiveness, reform, growth, capacity, progress, stability, protection, access, sustainable, etc._
+
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
