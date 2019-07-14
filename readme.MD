@@ -46,7 +46,7 @@ Some more paragraph stats.
 
 ## Installation
 
-Use the requirements.txt to install the package.
+I built this on Python 3.4.5. Use the requirements.txt to install the required packages.
 
 ```bash
 pip install -r requirements.txt
