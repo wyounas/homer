@@ -2,13 +2,13 @@
 
 Homer is a Python package for analyzing English text.
 
-It provides information on an overall text as well as on individual paragraphs. It gives insights into readability, length of paragraphs, length of sentences, average sentences per paragraph, average words in a sentence, etc. Further, it tries to identify words that make the text less readable, e.g. zombie nouns, abstract nouns, compulsive hedgers, and intensifiers. It also tracks the frequency of "and" words in the text. (More information on all of these follows in the `Acknowledgements` section.)
+It provides information on an overall text as well as on individual paragraphs. It gives insights into readability, length of paragraphs, length of sentences, average sentences per paragraph, average words in a sentence, etc. Further, it tries to identify words that make the text less readable, for example, zombie nouns, abstract nouns, compulsive hedgers, and intensifiers. It also tracks the frequency of "and" words in the text. (More information on all of these follows in the `Acknowledgements` section.)
 
 This software package grew out of a personal need. Since I am not a native English speaker but am interested in writing, I designed and have been using Homer to improve my writing. I hope others will find it useful.
 
-Please note that this is not a strict guide to control your writing. At least, I don't use it that way. I use it as a guide to make my writing as simple as possible. I strive to write concise paragraphs and sentences as well as use fewer unclear words, and Homer has been helping me. I have not used it to analyse my blogs and essays. I have not used it on large corpus of text. As this software is new, you may well spot bugs, in which case please feel free to open up issues/pull-requests.
+Please note that this is not a strict guide to control your writing. At least, I don't use it that way. I use it as a guide to make my writing as simple as possible. I strive to write concise paragraphs and sentences as well as use fewer unclear words, and Homer has been helping me. I have only used it to analyze my blogs and essays and not the large corpus of text. As this software is new, you may well spot bugs, in which case please feel free to open up issues/pull-requests.
 
-You can use Homer as a stand-alone package or on the command line. If you run it on the command line, you can get general stats on your article or essay as well as paragraph stats, as shown below.
+You can use Homer as a stand-alone package or on the command line. If you run it on the command line, you can get general stats on your article or essay as well as paragraph stats.
 
 #####  Article/Essay Stats
 
