@@ -67,7 +67,7 @@ These can download by running the following code from the command line, after ac
 ## Usage
 
 ```python
-from homer import Article
+from homer.analyzer import Article
 
 article = Article('Article name', 'Author', open('/file/path/article.txt').read())
 article.print_article_stats()
