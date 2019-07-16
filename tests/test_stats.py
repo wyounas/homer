@@ -1,10 +1,10 @@
 import os
 import unittest
-from homer import homer
+from homer import analyzer
 
 
 class TestTextStats(unittest.TestCase):
-    analyzed_text = homer.Article("some_text", "economist", open('stats.txt').read())
+    analyzed_text = analyzer.Article("some_text", "economist", open('stats.txt').read())
 
     def test_total_words(self):
         self.assertEqual(156, TestTextStats.analyzed_text.total_words)

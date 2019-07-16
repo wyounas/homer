@@ -1,9 +1,9 @@
 import unittest
-from homer import homer
+from homer import analyzer
 
 
 class TestMobyDick(unittest.TestCase):
-    analyzed_text = homer.Article("moby_dick", "herman_melville", open('moby_dick.txt').read())
+    analyzed_text = analyzer.Article("moby_dick", "herman_melville", open('moby_dick.txt').read())
 
     def test_total_words(self):
         self.assertEqual(1647, TestMobyDick.analyzed_text.total_words)

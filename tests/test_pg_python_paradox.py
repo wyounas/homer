@@ -1,9 +1,9 @@
 import unittest
-from homer import homer
+from homer import analyzer
 
 
 class TestPythonParadox(unittest.TestCase):
-    analyzed_text = homer.Article("python_paradox", "pg", open('python_paradox.txt').read())
+    analyzed_text = analyzer.Article("python_paradox", "pg", open('python_paradox.txt').read())
 
     def test_total_words(self):
         self.assertEqual(182, TestPythonParadox.analyzed_text.total_words)

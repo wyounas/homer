@@ -1,5 +1,5 @@
 import unittest
-from homer import homer
+from homer import analyzer
 
 class TestSentences(unittest.TestCase):
 
@@ -29,7 +29,7 @@ class TestSentences(unittest.TestCase):
         ]
 
         for data in sentences:
-            sentence_obj = homer.Sentence(data['line'])
+            sentence_obj = analyzer.Sentence(data['line'])
             self.assertEqual(data['words'], sentence_obj.total_words)
 
     def test_adjective(self):
@@ -57,7 +57,7 @@ class TestSentences(unittest.TestCase):
         ]
 
         for data in sentences:
-            sentence_obj = homer.Sentence(data['line'])
+            sentence_obj = analyzer.Sentence(data['line'])
             self.assertEqual(data['words'], sentence_obj.total_and_words)
 
     def test_compsulsive_hedgers(self):
@@ -84,7 +84,7 @@ class TestSentences(unittest.TestCase):
             }
         ]
         for data in sentences:
-            sentence = homer.Sentence(data['line'])
+            sentence = analyzer.Sentence(data['line'])
             self.assertEqual(data['words'], len(list(sentence.compulsive_hedgers)), data['line'])
 
     def test_intesifiers(self):
@@ -104,7 +104,7 @@ class TestSentences(unittest.TestCase):
 
         ]
         for data in sentences:
-            sentences = homer.Sentence(data['line'])
+            sentences = analyzer.Sentence(data['line'])
             self.assertEqual(data['words'], len(list(sentences.intensifiers)), data['line'])
 
     def test_abstract_nouns(self):
@@ -146,7 +146,7 @@ class TestSentences(unittest.TestCase):
         ]
 
         for data in sentences:
-            sentences = homer.Sentence(data['line'])
+            sentences = analyzer.Sentence(data['line'])
             self.assertEqual(data['words'], len(list(sentences.abstract_nouns)), data['line'])
 
     #
@@ -163,7 +163,7 @@ class TestSentences(unittest.TestCase):
 
         ]
         for data in sentences:
-            sentences = homer.Sentence(data['line'])
+            sentences = analyzer.Sentence(data['line'])
             self.assertEqual(data['words'], len(list(sentences.zombie_nouns)), data['line'])
 
     def test_ands(self):
@@ -183,7 +183,7 @@ class TestSentences(unittest.TestCase):
 
         ]
         for data in sentences:
-            sentences = homer.Sentence(data['line'])
+            sentences = analyzer.Sentence(data['line'])
             self.assertEqual(data['words'], sentences.total_and_words, data['line'])
     #     ands = ['and', 'And']
     #     for _and in ands:

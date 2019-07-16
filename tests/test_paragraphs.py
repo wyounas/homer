@@ -1,5 +1,5 @@
 import unittest
-from homer import homer
+from homer import analyzer
 
 class TestParagraphs(unittest.TestCase):
 
@@ -29,7 +29,7 @@ class TestParagraphs(unittest.TestCase):
         ]
 
         for data in sentences:
-            para = homer.Paragraph(data['para'])
+            para = analyzer.Paragraph(data['para'])
             # for p in para.sentences:
             #     print(p.words)
             self.assertEqual(data['words'], para.total_words)

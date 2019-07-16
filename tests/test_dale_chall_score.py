@@ -1,5 +1,5 @@
 import unittest
-from homer.homer import DaleChall
+from homer.analyzer import DaleChall
 
 class TestDaleChallReadingScore(unittest.TestCase):
 

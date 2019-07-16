@@ -1,5 +1,5 @@
 import unittest
-from homer.homer import FleschReading
+from homer.analyzer import FleschReading
 
 class TestFleschReadingReadingScore(unittest.TestCase):
 
