@@ -1,5 +1,5 @@
 import unittest
-from src import homer
+from homer import homer
 
 class TestParagraphs(unittest.TestCase):
 

@@ -1,6 +1,6 @@
 import os
 import unittest
-from src import homer
+from homer import homer
 
 
 class TestTextStats(unittest.TestCase):
