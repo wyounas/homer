@@ -52,17 +52,17 @@ class Word(object):
 
     def is_and(self):
             word_and = 'and'
-            return True if self.word == word_and else False
+            return self.word == word_and
 
     def is_compulsive_hedger(self):
-        return True if self.word in self.compulsive_hedgers else False
+        return self.word in self.compulsive_hedgers
 
     def is_intensifier(self):
-        return True if self.word in self.intensifiers else False
+        return self.word in self.intensifiers
 
     def is_vague_word(self):
         # vague word is either an abstract noun or it's in the above list
-        return True if self.word in self.abs_nouns + self.vague_words else False
+        return self.word in self.abs_nouns + self.vague_words
 
     def __repr__(self):
         return self.word
@@ -115,9 +115,7 @@ class Sentence(object):
         words = nltk.word_tokenize(self.sentence)
         tags = nltk.pos_tag(words)
         zombie_nouns = []
-        for tag in tags:
-            word = tag[0]
-            tag = tag[1]
+        for word, tag in tags:
             if tag.startswith('VB') or tag.startswith('JJ'):
                 if any(word.endswith(zombie) for zombie in self.zombies):
                     zombie_nouns.append(word)
