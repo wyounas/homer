@@ -9,7 +9,7 @@ class FleschReading(object):
         self.score = textstat.flesch_reading_ease(text)
 
     def grade(self):
-        if 0 <= self.score < 30:
+        if self.score < 30:
             return 'Very difficult'
         elif 30 <= self.score < 50:
             return 'Difficult'

@@ -21,7 +21,7 @@ import itertools
 import nltk
 from nltk.corpus import cmudict
 from functools import lru_cache
-from .utils import FleschReading, DaleChall
+from utils import FleschReading, DaleChall
 
 
 class Word(object):
@@ -88,7 +88,7 @@ class Sentence(object):
         words = [word for word in words if word.isalpha() or word.isdigit()]
         self._words = [get_word(word) for word in words]
         # zombies are verbs or adjectives that end with following
-        self.zombies = kwargs('zombies') or ['ance', 'ment', 'ments', 'tion', 'tions', 'ism', 'ity']
+        self.zombies = kwargs.get('zombies') or ['ance', 'ment', 'ments', 'tion', 'tions', 'ism', 'ity']
 
     @property
     def words(self):
