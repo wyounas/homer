@@ -1,15 +1,34 @@
 import unittest
 from homer import analyzer
 
+
 class TestParagraphs(unittest.TestCase):
 
+    def test_sentence_length(self):
+        sentences = [
+            {
+                'para': """Big or small, Panda is adorable. Call me something. But let me share a very interesting story with you, which I am sure you have never heard of.""",
+                'longest_sentence': """But let me share a very interesting story with you, which I am sure you have never heard of."""
+            },
+            {
+                'para': 'I love winter. Summer is good too. Autumn is the best and my whole family likes it.',
+                'longest_sentence': 'Autumn is the best and my whole family likes it.'
+            },
+            {
+                'para': 'Do you like great books? I love books. They really get me going since they help me enhance my knowledge.',
+                'longest_sentence': 'They really get me going since they help me enhance my knowledge.'
+            }
+        ]
+        for data in sentences:
+            paragraph_obj = analyzer.Paragraph(data['para'])
+            self.assertEqual(data['longest_sentence'], str(paragraph_obj.longest_sentence))
 
     def test_word_count(self):
         sentences = [
             {
-                    'para': '''Life is short, as everyone knows. When I was a kid I used to wonder about this. Is life actually short, or are we really complaining about its finiteness? Would we be just as likely to feel life was short if we lived 10 times as long?''',
-                    'words': 47,
-                    'sentences': 4
+                'para': '''Life is short, as everyone knows. When I was a kid I used to wonder about this. Is life actually short, or are we really complaining about its finiteness? Would we be just as likely to feel life was short if we lived 10 times as long?''',
+                'words': 47,
+                'sentences': 4
             },
             {
                 'para': '''Having kids showed me how to convert a continuous quantity, time, into discrete quantities. You only get 52 weekends with your 2 year old. If Christmas-as-magic lasts from say ages 3 to 10, you only get to watch your child experience it 8 times. And while it's impossible to say what is a lot or a little of a continuous quantity like time, 8 is not a lot of something. If you had a handful of 8 peanuts, or a shelf of 8 books to choose from, the quantity would definitely seem limited, no matter what your lifespan was.''',
@@ -33,7 +52,7 @@ class TestParagraphs(unittest.TestCase):
             # for p in para.sentences:
             #     print(p.words)
             self.assertEqual(data['words'], para.total_words)
-            self.assertEqual(data['sentences'], para.total_sentences)
+            self.assertEqual(data['sentences'], len(para))
 
 if __name__ == "__main__":
     unittest.main()

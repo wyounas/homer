@@ -7,11 +7,10 @@
                 |_| |_|\___/|_| |_| |_|\___|_|
 
 
-Homer analyzes english text (e.g. a blog post or an essay). Gives reading time, number of total sentences,
-readability scores, average sentences per paragraph, average words per sentence, compulsive hedgers, zombie nouns,
-and vague words.
-
 Homer can help make your text more clear, simple and useful for the reader.
+
+Homer analyzes english text (e.g. a blog post or an essay). Gives reading time, readability scores, paragraph and
+sentence level stats.
 
 Author: Waqas Younas
 Email: waqas.younas@gmail.com
@@ -21,34 +20,27 @@ import itertools
 import nltk
 from nltk.corpus import cmudict
 from functools import lru_cache
-from utils import FleschReading, DaleChall
+from homer.utils import FleschReading, DaleChall
+from homer.constants import INTENSIFIERS, COMPULSIVE_HEDGERS, VAGUE_WORDS, MAX_WORDS_IN_SENTENCE,\
+    MAX_SENTENCES_IN_PARAGRAPH, WORDS_ONE_READS_PER_MINUTE
 
 
 class Word(object):
     """
-    An abstraction of a 'word'. It determines whether a word is a compulsive hedger, an intensifier, an abstract
-    noun or a vague word.
+    An abstraction of a 'word'. It determines whether a word is a compulsive hedger, an intensifier or a vague word.
 
-    The idea to look for compulsive hedgers, intensifiers and abstract nouns came from Steven Pinker's book
-    `The Sense of Style: The Thinking Person's Guide to Writing in the 21st Century`.
-
-    Whereas the idea to look for vague words came after reading both the above book and the following paper:
-    https://litlab.stanford.edu/LiteraryLabPamphlet9.pdf
+    The idea to look for compulsive hedgers, intensifiers and vague words came from the following works:
+    - Steven Pinker's book `The Sense of Style: The Thinking Person's Guide to Writing in the 21st Century`.
+    - https://litlab.stanford.edu/LiteraryLabPamphlet9.pdf
     """
 
-    def __init__(self, word, **kwargs):
+    def __init__(self, word, intensifiers=INTENSIFIERS, compulsive_hedgers=COMPULSIVE_HEDGERS,
+                 vague_words=VAGUE_WORDS):
         self.syllables = None
         self.word = word.strip().lower()
-        self.intensifiers = kwargs.get('intensifiers') or ['very', 'highly', 'extremely']
-        self.compulsive_hedgers = kwargs.get('compulsive_hedgers') or ['apparently', 'almost', 'fairly', 'nearly',
-                                                                       'partially', 'predominantly', 'presumably', 'rather', 'relative', 'seemingly']
-        self.abs_nouns = kwargs.get('abs_nouns') or ["approach", 'assumption', 'concept', 'condition', 'context',
-                                                     'framework', 'issue', 'model', 'process', 'range', 'role', 'strategy', 'tendency', 'variable', 'perspective']
-        self.vague_words = kwargs.get('vague_words') or ['accrual', 'derivative', 'fair value', 'portfolio', 'audit', 'poverty', 'evaluation',
-                                                                'management', 'monitoring', 'effectiveness', 'performance', 'competitiveness',
-                                                                'reform', 'assistance', 'growth', 'effort', 'capacity', 'transparency',
-                                                                'effectiveness', 'progress', 'stability', 'protection', 'access',
-                                                                'implementation', 'sustainable']
+        self.intensifiers = intensifiers
+        self.compulsive_hedgers = compulsive_hedgers
+        self.vague_words = vague_words
 
     def is_and(self):
             word_and = 'and'
@@ -61,15 +53,13 @@ class Word(object):
         return self.word in self.intensifiers
 
     def is_vague_word(self):
-        # vague word is either an abstract noun or it's in the above list
-        return self.word in self.abs_nouns + self.vague_words
+        return self.word in self.vague_words
 
     def __repr__(self):
-        return self.word
+        return 'Word(%r)' % self.word
 
     def __str__(self):
         return self.word
-
 
 
 @lru_cache(maxsize=256)
@@ -79,28 +69,24 @@ def get_word(word):
 
 class Sentence(object):
     """
-    An abstraction that represents a sentence. Gives total words, compulsive hedgers, intensifiers,
-    abstract nouns, vague words and zombie nouns in a sentence.
+    An abstraction that represents a sentence and gives various stats.
     """
-    def __init__(self, sentence, **kwargs):
+    def __init__(self, sentence):
         self.sentence = sentence
         words = nltk.word_tokenize(sentence)
         words = [word for word in words if word.isalpha() or word.isdigit()]
         self._words = [get_word(word) for word in words]
-        # zombies are verbs or adjectives that end with following
-        self.zombies = kwargs.get('zombies') or ['ance', 'ment', 'ments', 'tion', 'tions', 'ism', 'ity']
 
     @property
     def words(self):
         return self._words
 
     @property
-    def total_words(self):
-        return len(self.words)
-
-    @property
     def total_and_words(self):
         return len([word for word in self.words if word.is_and()])
+
+    def is_long(self):
+        return len(self) > MAX_WORDS_IN_SENTENCE
 
     def get_compulsive_hedgers(self):
         return (word for word in self.words if word.is_compulsive_hedger())
@@ -111,15 +97,20 @@ class Sentence(object):
     def get_vague_words(self):
         return (word for word in self.words if word.is_vague_word())
 
-    def get_zombie_nouns(self):
-        words = nltk.word_tokenize(self.sentence)
-        tags = nltk.pos_tag(words)
-        zombie_nouns = []
-        for word, tag in tags:
-            if tag.startswith('VB') or tag.startswith('JJ'):
-                if any(word.endswith(zombie) for zombie in self.zombies):
-                    zombie_nouns.append(word)
-        return zombie_nouns
+    def __len__(self):
+        return len(self.words)
+
+    def __lt__(self, other):
+        return len(self) < len(other)
+
+    def __gt__(self, other):
+        return len(self) > len(other)
+
+    def __eq__(self, other):
+        return len(self) == len(other)
+
+    def __repr__(self):
+        return 'Sentence(%r)' % self.sentence
 
     def __str__(self):
         return self.sentence
@@ -127,9 +118,8 @@ class Sentence(object):
 
 class Paragraph(object):
     """
-    Represents a paragraph. Gives compulsive hedgers, intensifiers, abstract nouns,
-    zombie nouns, vague words, and readability scores of a paragraph. Moreover, it gives us total words,
-    total sentences, longest sentence and avg words per sentence in a paragraph.
+    Represents a paragraph. Finds compulsive hedgers, intensifiers, vague words, readability scores of a paragraph and
+    various other stats.
     """
 
     def __init__(self, paragraph):
@@ -138,17 +128,18 @@ class Paragraph(object):
         self.tokenized_sentences = nltk.sent_tokenize(paragraph)
         self._sentences = [Sentence(sentence) for sentence in self.tokenized_sentences]
 
+
     @property
     def sentences(self):
         return self._sentences
 
     @property
-    def total_sentences(self):
-        return len(self.sentences)
+    def longest_sentence(self):
+        return max(self._sentences, key=lambda sentence: len(sentence))
 
     @property
     def total_words(self):
-        return sum([sentence.total_words for sentence in self.sentences])
+        return sum([len(sentence) for sentence in self.sentences])
 
     @property
     def total_and_words(self):
@@ -156,11 +147,11 @@ class Paragraph(object):
 
     @property
     def avg_words_per_sentence(self):
-        return round(self.total_words / self.total_sentences, 2)
+        round_to_two_digits = 2
+        return round(self.total_words / len(self), round_to_two_digits)
 
-    @property
-    def longest_sentence(self):
-        return max(self.tokenized_sentences)
+    def is_long(self):
+        return len(self) >= MAX_SENTENCES_IN_PARAGRAPH
 
     def get_flesch_reading_score(self):
         return FleschReading(self.paragraph).grade()
@@ -176,32 +167,37 @@ class Paragraph(object):
         return list(itertools.chain(*[sentence.get_compulsive_hedgers() for sentence in self.sentences
                                                          if sentence.get_compulsive_hedgers()]))
 
-    def get_zombie_nouns(self):
-        return list(itertools.chain(*[sentence.get_zombie_nouns() for sentence in self.sentences
-                                                   if sentence.get_zombie_nouns()]))
-
     def get_vague_words(self):
         return list(itertools.chain(*[sentence.get_vague_words() for sentence in self.sentences
                                                   if sentence.get_vague_words()]))
 
+    def __len__(self):
+        return len(self.sentences)
+
+    def __lt__(self, other):
+        return len(self) < len(other)
+
+    def __gt__(self, other):
+        return len(self) > len(other)
+
+    def __eq__(self, other):
+        return len(self) == len(other)
+
     def __repr__(self):
-        return "sentences= {sentences}, flesch_reading_score={flesch_reading}, dale_chall={dale_chall}".format(
-            sentences=self.total_sentences, flesch_reading=self.get_flesch_reading_score(),
-            dale_chall=self.get_dale_chall_reading_score())
+        return 'Paragraph(%r)' % self.paragraph
 
 
 class Article(object):
     """
     This represents a block of text, i.e. an essay, a blog or an article.
 
-    Using this, we can retrieve article-level as well as paragraph-level stats.
+    Using this, we can retrieve article as well as paragraph-level stats.
     """
     def __init__(self, name, author, text):
         self.name = name
         self.author = author
         # Replacing em dash and en dash
-        text = text.replace('—', ' ')
-        self.text = text
+        self.text = text.replace('—', ' ')
         paragraphs = nltk.tokenize.blankline_tokenize(text)
         self._paragraphs = [Paragraph(paragraph) for paragraph in paragraphs]
 
@@ -210,8 +206,20 @@ class Article(object):
         return self._paragraphs
 
     @property
+    def len_of_longest_paragraph(self):
+        return len(max(self._paragraphs, key=lambda paragraph: len(paragraph)))
+
+    @property
+    def longest_sentence(self):
+        return max([paragraph.longest_sentence for paragraph in self._paragraphs], key=lambda sentence: len(sentence))
+
+    @property
+    def len_of_longest_sentence(self):
+        return len(self.longest_sentence)
+
+    @property
     def total_sentences(self):
-        return sum([paragraph.total_sentences for paragraph in self.paragraphs])
+        return sum([len(paragraph) for paragraph in self.paragraphs])
 
     @property
     def total_paragraphs(self):
@@ -227,16 +235,17 @@ class Article(object):
 
     @property
     def reading_time(self):
-        words_one_reads_per_minute = 200
-        return self.total_words / words_one_reads_per_minute
+        return self.total_words / WORDS_ONE_READS_PER_MINUTE
 
     @property
     def avg_sentences_per_para(self):
-        return round(self.total_sentences / self.total_paragraphs, 2)
+        round_to_two_digits = 2
+        return round(self.total_sentences / self.total_paragraphs, round_to_two_digits)
 
     @property
     def avg_words_per_sentence(self):
-        return round(self.total_words / self.total_sentences, 2)
+        round_to_two_digits = 2
+        return round(self.total_words / self.total_sentences, round_to_two_digits)
 
     def get_paragraphs(self):
         return self.paragraphs
@@ -246,6 +255,9 @@ class Article(object):
 
     def get_dale_chall_reading_score(self):
         return DaleChall(self.text).grade()
+
+    def is_difficult_to_read(self):
+        return FleschReading(self.text).is_difficult()
 
     def get_intensifiers(self):
         return list(itertools.chain(*(paragraph.get_intensifiers() for paragraph in self.paragraphs
@@ -259,12 +271,9 @@ class Article(object):
         return list(itertools.chain(*(paragraph.get_compulsive_hedgers() for paragraph in self.paragraphs
                                                          if paragraph.get_compulsive_hedgers())))
 
-    def get_zombie_nouns(self):
-        return list(itertools.chain(*(paragraph.get_zombie_nouns() for paragraph in self.paragraphs
-                                                   if paragraph.get_zombie_nouns())))
-
     def get_and_frequency(self):
-        return str(round(self.total_and_words / self.total_words * 100, 2)) + " %"
+        round_to_two_digits = 2
+        return str(round(self.total_and_words / self.total_words * 100, round_to_two_digits)) + " %"
 
     def ten_words_with_most_syllables(self):
         """This gets us 10 words with most syllables in a text"""

@@ -97,7 +97,7 @@ class TestDaleChallReadingScore(unittest.TestCase):
         dale_chall.score = 9.9
         self.assertEqual(grade_label, dale_chall.grade())
         dale_chall.score = 10.0
-        self.assertNotEqual(grade_label, dale_chall.grade())
+        self.assertEqual(grade_label, dale_chall.grade())
 
 if __name__ == "__main__":
     unittest.main()

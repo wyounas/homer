@@ -9,7 +9,7 @@ class TestMobyDick(unittest.TestCase):
         self.assertEqual(1647, TestMobyDick.analyzed_text.total_words)
 
     def test_total_paragraphs(self):
-        self.assertEqual(10, TestMobyDick.analyzed_text.total_paragrpahs)
+        self.assertEqual(10, TestMobyDick.analyzed_text.total_paragraphs)
 
     def test_total_sentences(self):
         self.assertEqual(86, TestMobyDick.analyzed_text.total_sentences)
@@ -17,24 +17,24 @@ class TestMobyDick(unittest.TestCase):
     def test_average_sentences_in_paragraph(self):
         self.assertEqual(8.6, TestMobyDick.analyzed_text.avg_sentences_per_para)
 
-    def test_avergae_words_per_sentnece(self):
+    def test_average_words_per_sentence(self):
         self.assertEqual(19.15, TestMobyDick.analyzed_text.avg_words_per_sentence)
 
     def test_total_and_words(self):
-        print(TestMobyDick.analyzed_text.and_words)
+        print(TestMobyDick.analyzed_text.total_and_words)
         self.assertEqual(55, TestMobyDick.analyzed_text.total_and_words)
 
-    def test_zombie_nouns(self):
-        self.assertEqual(35, len(TestMobyDick.analyzed_text.zombie_nouns))
-
     def test_intensifiers(self):
-        self.assertEqual(1, len(TestMobyDick.analyzed_text.intensifiers))
+        self.assertEqual(1, len(TestMobyDick.analyzed_text.get_intensifiers()))
 
-    def test_compsulsive_hedgers(self):
-        self.assertEqual(6, len(TestMobyDick.analyzed_text.compulsive_hedgers))
+    def test_compulsive_hedgers(self):
+        self.assertEqual(6, len(TestMobyDick.analyzed_text.get_compulsive_hedgers()))
 
-    def test_abstract_nouns(self):
-        self.assertEqual(0, len(TestMobyDick.analyzed_text.abstract_nouns))
+    def test_longest_sentence(self):
+        start = "Whenever I find myself growing grim about the mouth;"
+        end = "and methodically knocking people's hats off then, I account it high time to get to sea as soon as I can."
+        longest_sentence = str(TestMobyDick.analyzed_text.longest_sentence)
+        self.assertTrue(longest_sentence.startswith(start) and longest_sentence.endswith(end))
 
 if __name__ == "__main__":
     unittest.main()

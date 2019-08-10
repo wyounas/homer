@@ -1,6 +1,6 @@
 # Homer
 
-Homer is a Python package for analyzing English text.
+Homer is a Python package that can help make your text more clear, simple and useful for the reader.
 
 It provides information on an overall text as well as on individual paragraphs. It gives insights into readability, length of paragraphs, length of sentences, average sentences per paragraph, average words in a sentence, etc. Further, it tries to identify words that make the text less readable, for example, zombie nouns, abstract nouns, compulsive hedgers, and intensifiers. It also tracks the frequency of "and" words in the text. (More information on all of these follows in the `Acknowledgements` section.)
 
@@ -40,13 +40,16 @@ Paragraph stats point out the following information for _each paragraph_:
 
 ![Paragraph stats](docs/paragraph_stats.png)
 
-Some more paragraph stats.
-
-![More paragraph stats](docs/paragraph_stats_1.png)
-
 ## Installation
 
-I built this on Python 3.4.5. Use the requirements.txt to install the required packages.
+I built this on Python 3.4.5. First create a virtual environment.
+
+ ```bash
+python3 -m venv /path/to/env
+source /path/to/env/bin activate
+```
+
+Use the requirements.txt to install the required packages.
 
 ```bash
 pip install -r requirements.txt

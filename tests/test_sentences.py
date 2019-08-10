@@ -1,9 +1,8 @@
 import unittest
 from homer import analyzer
 
+
 class TestSentences(unittest.TestCase):
-
-
     def test_word_count(self):
         sentences = [
             {
@@ -30,7 +29,7 @@ class TestSentences(unittest.TestCase):
 
         for data in sentences:
             sentence_obj = analyzer.Sentence(data['line'])
-            self.assertEqual(data['words'], sentence_obj.total_words)
+            self.assertEqual(data['words'], len(sentence_obj))
 
     def test_adjective(self):
         sentences = [
@@ -60,7 +59,7 @@ class TestSentences(unittest.TestCase):
             sentence_obj = analyzer.Sentence(data['line'])
             self.assertEqual(data['words'], sentence_obj.total_and_words)
 
-    def test_compsulsive_hedgers(self):
+    def test_compulsive_hedgers(self):
         sentences = [
             {
                 'line': 'Big or small, Panda is apparently adorable.',
@@ -85,9 +84,9 @@ class TestSentences(unittest.TestCase):
         ]
         for data in sentences:
             sentence = analyzer.Sentence(data['line'])
-            self.assertEqual(data['words'], len(list(sentence.compulsive_hedgers)), data['line'])
+            self.assertEqual(data['words'], len(list(sentence.get_compulsive_hedgers())), data['line'])
 
-    def test_intesifiers(self):
+    def test_intensifiers(self):
         sentences = [
             {
                 'line': 'Big or small, Panda is extremely adorable.',
@@ -105,14 +104,10 @@ class TestSentences(unittest.TestCase):
         ]
         for data in sentences:
             sentences = analyzer.Sentence(data['line'])
-            self.assertEqual(data['words'], len(list(sentences.intensifiers)), data['line'])
+            self.assertEqual(data['words'], len(list(sentences.get_intensifiers())), data['line'])
 
     def test_abstract_nouns(self):
         sentences = [
-            {
-                'line': 'Big or small, some issues need urgent attention.',
-                'words': 1
-            },
             {
                 'line': 'In this context, I would prefer chocolate.',
                 'words': 1
@@ -147,24 +142,7 @@ class TestSentences(unittest.TestCase):
 
         for data in sentences:
             sentences = analyzer.Sentence(data['line'])
-            self.assertEqual(data['words'], len(list(sentences.abstract_nouns)), data['line'])
-
-    #
-    def test_zombie_nouns(self):
-        sentences = [
-            {
-                'line': 'I have eating lot of food.',
-                'words': 1
-            },
-            {
-                'line': 'I completed reading this book, now thinking what it is about.',
-                'words': 1
-            },
-
-        ]
-        for data in sentences:
-            sentences = analyzer.Sentence(data['line'])
-            self.assertEqual(data['words'], len(list(sentences.zombie_nouns)), data['line'])
+            self.assertEqual(data['words'], len(list(sentences.get_vague_words())), data['line'])
 
     def test_ands(self):
         sentences = [

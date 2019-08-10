@@ -12,19 +12,21 @@ class ArticlePrinter(object):
         """This method is called to present overall article stats on a command line."""
         table_data = [
             [Color('{autocyan}Overall Stats{/autocyan}')],
-            ['Reading time (in mins)', self.article.reading_time],
-            ['Flesch Reading Score', self.article.get_flesch_reading_score()],
+            ['Reading time', str(self.article.reading_time) + ' mins'],
+            ['Flesch Reading Ease', self.article.get_flesch_reading_score()],
             ['Dale Chall Readability Score', self.article.get_dale_chall_reading_score()],
             ['Paragraphs', self.article.total_paragraphs],
+            ['Avg sentences per paragraph', self.article.avg_sentences_per_para],
+            ['Total sentences in longest paragraph', self.article.len_of_longest_paragraph],
             ['Sentences', self.article.total_sentences],
-            ['Avg sentences per para', self.article.avg_sentences_per_para],
             ['Avg words per sentence', self.article.avg_words_per_sentence],
+            ['Longest sentence', "%s..." % str(self.article.longest_sentence)[0:30]],
+            ['Words in longest sentence', self.article.len_of_longest_sentence],
             ['Words', self.article.total_words],
-            ['Zombie nouns', len(self.article.get_zombie_nouns())],
             ['"and" frequency"', self.article.get_and_frequency()],
             ['Compulsive Hedgers', len(self.article.get_compulsive_hedgers())],
             ['Intensifiers', len(self.article.get_intensifiers())],
-            ['Vague words', len(self.article.get_vague_words())]
+            ['Vague words', len(self.article.get_vague_words())],
         ]
         table_instance = SingleTable(table_data)
         table_instance.inner_heading_row_border = True
@@ -49,7 +51,7 @@ class ArticlePrinter(object):
             ['Paragraph #', '']
         ]
         for item, para in enumerate(self.article.paragraphs):
-            sentences = Color('{red}%s{/red}' % str(para.total_sentences)) if para.total_sentences > 5 else str(para.total_sentences)
+            sentences = Color('{red}%s{/red}' % str(len(para))) if len(para) > 5 else str(len(para))
             avg_words_per_sentence = Color(
                 '{red}%s{/red}' % str(para.avg_words_per_sentence)) if para.avg_words_per_sentence > 25 else str(
                 para.avg_words_per_sentence)
@@ -70,33 +72,21 @@ class ArticlePrinter(object):
         table_instance.justify_columns = {0: 'center', 1: 'left'}
         print(table_instance.table)
 
+    def _print_detail_of(self, words_list, heading, display_count=True):
+        words = [str(word) for word in words_list]
+        if len(words) >= 1:
+            words_unique_list = list(set(words))
+            format_str = "{word} ({count})"
+            if display_count:
+                msg = '{red} **- %s: %s {/red}\r\n' % (heading, ', '.join(format_str.format(word=str(word),
+                                                           count=words.count(word)) for word in words_unique_list))
+            else:
+                msg = '{red} **- %s: %s {/red}\r\n' % (heading, ', '.join(word for word in words_unique_list))
+            print(Color(msg))
+
     def print_detail(self):
-        zombie_nouns = self.article.get_zombie_nouns()
-        if len(zombie_nouns) >= 1:
-            msg = '{red} **- Zombie nouns: %s {/red}\r\n' % ', '.join(str(zombie) for zombie in zombie_nouns)
-            print(Color(msg))
-
-        compulsive_hedgers = self.article.get_compulsive_hedgers()
-        if len(compulsive_hedgers) >= 1:
-            msg = '{red} **- Compulsive Hedgers: %s {/red}\r\n' % ', '.join(str(compulsive_hedger) for compulsive_hedger in compulsive_hedgers)
-            print(Color(msg))
-
-        intensifiers = self.article.get_intensifiers()
-        if len(intensifiers) >= 1:
-            msg = '{red} **- Intensifiers: %s {/red}\r\n' % ', '.join(str(intensifier) for intensifier
-                                                                      in intensifiers)
-            print(Color(msg))
-
-        vague_words = self.article.get_vague_words()
-        if len(vague_words) >= 1:
-            msg = '{red} **- Vague words: %s {/red}\r\n' % ', '.join(str(vague_word) for vague_word in vague_words)
-            print(Color(msg))
-
-        ten_words_with_most_syllables = self.article.ten_words_with_most_syllables()
-        if len(ten_words_with_most_syllables) >= 1:
-            msg = '{red} **- 10 words with most syllables: %s {/red}\r\n' % ', '.join(ten_words_with_most_syllables)
-            print(Color(msg))
-
-        msg = "{red} **- Twenty most repeated words (highest to lowest): %s {/red}\r\n" % \
-              ', '.join(self.article.get_n_most_repeated_words(20))
-        print(Color(msg))
+        self._print_detail_of(self.article.get_compulsive_hedgers(), "Compulsive Hedgers", display_count=False)
+        self._print_detail_of(self.article.get_intensifiers(), "Intensifiers", display_count=False)
+        self._print_detail_of(self.article.get_vague_words(), "Vague words")
+        self._print_detail_of(self.article.ten_words_with_most_syllables(), "10 words with most syllables", display_count=False)
+        self._print_detail_of(self.article.get_n_most_repeated_words(20), "20 most repeated words", display_count=False)
