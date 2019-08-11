@@ -14,13 +14,13 @@ You can use Homer as a stand-alone package or on the command line. If you run it
 
 Running Homer from the command line gives the following insights about the text:
 
-* Reading time in minutes (although this will vary some from reader to reader)
-* Readability scores (Flesch reading ease and Dale Chall readability scores)
-* Total paragraphs, sentences, and words
-* Average sentences per paragraph
-* Average words per sentence
-* "and" frequency
-* Number of compulsive hedgers, intensifiers, vague words
+* Reading time in minutes (although this will vary some from reader to reader).
+* Readability scores (Flesch reading ease and Dale Chall readability scores).
+* Total paragraphs, sentences, and words.
+* Average sentences per paragraph.
+* Average words per sentence.
+* "and" frequency.
+* Number of compulsive hedgers, intensifiers, vague words.
 * At the end, it goes on to list the compulsive hedgers, intensifiers, and vague words that it found.
 
 
@@ -30,10 +30,10 @@ Running Homer from the command line gives the following insights about the text:
 
 Paragraph stats point out the following information for _each paragraph_:
 
-* Number of sentences and words
-* Average words per sentence
-* The longest sentence in the paragraph
-* Readability scores (Flesch reading ease and Dale Chall readability scores)
+* Number of sentences and words.
+* Average words per sentence.
+* The longest sentence in the paragraph.
+* Readability scores (Flesch reading ease and Dale Chall readability scores).
 * If the number of sentences is more than five in a paragraph, then Homer gives a warning highlighted in red.
 * Similarly, when the number of words is more than 25 in a sentence, then a warning highlighted in red is given.
 
