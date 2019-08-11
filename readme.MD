@@ -88,11 +88,7 @@ Tests can be run from the `tests` directory.
 
 ## Acknowledgements
 
-* Steven Pinker's [The Sense of Style: The Thinking Person's Guide to Writing in the 21st Century](https://www.amazon.com/Sense-Style-Thinking-Persons-Writing/dp/0143127799). This book gave me quite a few insights. It also prompted me to include tracking of zombie nouns, abstract nouns, complex hedgers and intensifiers.
-
-  - Zombie nouns: https://www.youtube.com/watch?v=dNlkHtMgcPQ
-
-  - Abstract nouns: Words such as _approach, assumption, concept, context, framework, process, model, role, strategy, perspective, variable, etc._
+* Steven Pinker's [The Sense of Style: The Thinking Person's Guide to Writing in the 21st Century](https://www.amazon.com/Sense-Style-Thinking-Persons-Writing/dp/0143127799). This book gave me quite a few insights. It also prompted me to include tracking of vague words, complex hedgers and intensifiers.
 
   - Complex hedgers: These are words such as _apparently, almost, fairly, nearly, partially, predominantly, presumably, rather, relative, seemingly, etc._
 
