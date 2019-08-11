@@ -2,7 +2,7 @@
 
 Homer is a Python package that can help make your text more clear, simple and useful for the reader.
 
-It provides information on an overall text as well as on individual paragraphs. It gives insights into readability, length of paragraphs, length of sentences, average sentences per paragraph, average words in a sentence, etc. Further, it tries to identify words that make the text less readable, for example, zombie nouns, abstract nouns, compulsive hedgers, and intensifiers. It also tracks the frequency of "and" words in the text. (More information on all of these follows in the `Acknowledgements` section.)
+It provides information on an overall text as well as on individual paragraphs. It gives insights into readability, length of paragraphs, length of sentences, average sentences per paragraph, average words in a sentence, etc. It also tries to identify certain kind of vague words. It also tracks the frequency of "and" words in the text. (More information on all of these follows in the `Acknowledgements` section.)
 
 This software package grew out of a personal need. Since I am not a native English speaker but am interested in writing, I designed and have been using Homer to improve my writing. I hope others will find it useful.
 
@@ -12,7 +12,7 @@ You can use Homer as a stand-alone package or on the command line. If you run it
 
 #####  Article/Essay Stats
 
-Running Homer from the command line gives the following insights about the overall text:
+Running Homer from the command line gives the following insights about the text:
 
 * Reading time in minutes (although this will vary some from reader to reader)
 * Readability scores (Flesch reading ease and Dale Chall readability scores)
@@ -20,8 +20,8 @@ Running Homer from the command line gives the following insights about the overa
 * Average sentences per paragraph
 * Average words per sentence
 * "and" frequency
-* Number of zombie nouns, compulsive hedgers, intensifiers, abstract nouns, vague words
-* At the end, it goes on to list the zombie nouns, compulsive hedgers, intensifiers, abstract nouns, and vague words that it found.
+* Number of compulsive hedgers, intensifiers, vague words
+* At the end, it goes on to list the compulsive hedgers, intensifiers, and vague words that it found.
 
 
 ![Article stats](docs/article_stats.png)
