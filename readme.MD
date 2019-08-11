@@ -20,8 +20,7 @@ Running Homer from the command line gives the following insights about the text:
 * Average sentences per paragraph.
 * Average words per sentence.
 * "and" frequency.
-* Number of compulsive hedgers, intensifiers, vague words.
-* At the end, it goes on to list the compulsive hedgers, intensifiers, and vague words that it found.
+* Number and list of compulsive hedgers, intensifiers, vague words.
 
 
 ![Article stats](docs/article_stats.png)
