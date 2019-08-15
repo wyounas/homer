@@ -70,10 +70,12 @@ These can download by running the following code from the command line, after ac
 
 ```python
 from homer.analyzer import Article
+from homer.cmdline_printer import ArticlePrinter
 
 article = Article('Article name', 'Author', open('/file/path/article.txt').read())
-article.print_article_stats()
-article.print_paragraph_stats()
+printer = ArticlePrinter(article)
+printer.print_article_stats()
+printer.print_paragraph_stats()
 ```
 
 ## Tests
