@@ -45,7 +45,7 @@ I built this on Python 3.4.5. First create a virtual environment.
 
  ```bash
 python3 -m venv /path/to/env
-source /path/to/env/bin activate
+source /path/to/env/bin/activate
 ```
 
 Use the requirements.txt to install the required packages.

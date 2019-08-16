@@ -62,7 +62,7 @@ class ArticlePrinter(object):
                                    word_tag=word_tag, avg_words=avg_words_per_sentence, avg_word_tag=avg_word_tag,
                                    longest_sent=str(para.longest_sentence)[0:10], long_tag=long_tag
                                )])
-            table_data.append(["", "Flesh Reading score={flesch_reading}, Dale Chall Readability= {dale_chall}".format(
+            table_data.append(["", "Flesch Reading score={flesch_reading}, Dale Chall Readability= {dale_chall}".format(
                 flesch_reading=para.get_flesch_reading_score(), dale_chall=para.get_dale_chall_reading_score()
             )])
 
