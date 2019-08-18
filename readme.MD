@@ -57,9 +57,6 @@ For Ubuntu you might find this [resource](https://askubuntu.com/questions/802279
 
 ### Virtual environment
 
-To create a virtual environment we need Pip. Pip should be installed since it comes with Python. However,
-you can still at [this](https://pip.pypa.io/en/stable/installing/) in case you need help with its installation.
-
 Now it's time to create a virtual environment (assuming you cloned the code under `~/code/homer`).
 
  ```bash
