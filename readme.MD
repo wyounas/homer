@@ -68,7 +68,7 @@ First line in the above snippet creates a virtual environment named `venv` under
 In case you need more help with creating a virtual environment this [resource](https://docs.python.org/3/library/venv.html) can prove to be useful.
 
 ### Installing libraries
-Use the requirements.txt to install the required packages.
+After the virtual environment is created and activated then using the following command install the required packages.
 
 ```bash
 pip install -r requirements.txt
@@ -93,7 +93,7 @@ Before we can use the project we need to add it to `PYTHONPATH`. On Mac and Linu
 you can add it temporarily using command line e.g.,;
 
 ```bash
-export PYTHONPATH="/path/to/homer"
+export PYTHONPATH="/~code/homer"
 ```
 To add the python permanently, on Mac add the above to `~/.bash_profile` file. If you are on
 Linux add the above to `~/.bashrc`. If you are on Windows, then the [this](https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-so-it-finds-my-modules-packages) StackOverflow question has useful information.
