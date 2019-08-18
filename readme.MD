@@ -41,13 +41,36 @@ Paragraph stats point out the following information for _each paragraph_:
 
 ## Installation
 
-I built this on Python 3.4.5. First create a virtual environment.
+### Python
+I built this on Python 3.4.5. So first we need to install Python.
 
- ```bash
-python3 -m venv /path/to/env
-source /path/to/env/bin activate
+On Mac, I used Homebrew to install Python e.g. one can use this command:
+
+```bash
+brew install python3
 ```
 
+To install on Windows, you can download the installer from [here](https://www.python.org/downloads/windows/). Once downloaded this installer can be run to complete Python's installation.
+
+For Ubuntu you might find this [resource](https://askubuntu.com/questions/802279/how-to-install-python-3-4-5-from-apt) useful.
+
+
+### Virtual environment
+
+To create a virtual environment we need Pip. Pip should be installed since it comes with Python. However,
+you can still at [this](https://pip.pypa.io/en/stable/installing/) in case you need help with its installation.
+
+Now it's time to create a virtual environment (assuming you cloned the code under `~/code/homer`).
+
+ ```bash
+~/code/homer> python3 -m venv venv
+~/code/homer> source venv activate
+```
+First line in the above snippet creates a virtual environment named `venv` under `~/code/homer`. The second command activates the virtual environment.
+
+In case you need more help with creating a virtual environment this [resource](https://docs.python.org/3/library/venv.html) can prove to be useful.
+
+### Installing libraries
 Use the requirements.txt to install the required packages.
 
 ```bash
@@ -66,6 +89,18 @@ These can download by running the following code from the command line, after ac
 >>>nltk.download('cmudict')
 >>> nltk.download('stopwords')
 ```
+
+### Setting project path
+
+Before we can use the project we need to add it to `PYTHONPATH`. On Mac and Linux
+you can add it temporarily using command line e.g.,;
+
+```bash
+export PYTHONPATH="/path/to/homer"
+```
+To add the python permanently, on Mac add the above to `~/.bash_profile` file. If you are on
+Linux add the above to `~/.bashrc`. If you are on Windows, then the [this](https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-so-it-finds-my-modules-packages) StackOverflow question has useful information.
+
 ## Usage
 
 ```python
