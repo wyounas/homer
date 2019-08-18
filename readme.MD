@@ -61,7 +61,7 @@ Now it's time to create a virtual environment (assuming you cloned the code unde
 
  ```bash
 ~/code/homer> python3 -m venv venv
-~/code/homer> source venv activate
+~/code/homer> source venv/bin/activate
 ```
 First line in the above snippet creates a virtual environment named `venv` under `~/code/homer`. The second command activates the virtual environment.
 
