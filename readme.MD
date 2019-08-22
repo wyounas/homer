@@ -6,13 +6,17 @@ It provides information on an overall text as well as on individual paragraphs. 
 
 This software package grew out of a personal need. Since I am not a native English speaker but am interested in writing, I designed and have been using Homer to improve my writing. I hope others will find it useful.
 
-Please note that this is not a strict guide to control your writing. At least, I don't use it that way. I use it as a guide to make my writing as simple as possible. I strive to write concise paragraphs and sentences as well as use fewer unclear words, and Homer has been helping me. I have only used it to analyze my blogs and essays and not the large corpus of text. As this software is new, you may well spot bugs, in which case please feel free to open up issues/pull-requests.
+Please note that this is not a strict guide to control your writing. At least, I don't use it that way. I use it as a guide to make my writing as simple as possible. I strive to write concise paragraphs and sentences as well as use fewer unclear words, and Homer has been helping me.
+
+I have only used it to analyze my blogs and essays and not the large corpus of text. As this software is new, you may well spot bugs, in which case please feel free to open up issues/pull-requests.
 
 You can use Homer as a stand-alone package or on the command line. If you run it on the command line, you can get general stats on your article or essay as well as paragraph stats.
 
+## Features
+
 #####  Article/Essay Stats
 
-Running Homer from the command line gives the following insights about the text:
+Running Homer from the command line gives the following insights about the article/essay:
 
 * Reading time in minutes (although this will vary some from reader to reader).
 * Readability scores (Flesch reading ease and Dale Chall readability scores).
@@ -100,14 +104,26 @@ Linux add the above to `~/.bashrc`. If you are on Windows, then the [this](https
 
 ## Usage
 
+### Command line
+
+A command line utility, under the `homer` directory, has been provided. Here is an example showing how to use it:
+
+```bash
+> python homer_cmd.py --name article_name --author lalala --file_path=/correct/path/to/file.txt
+```
+
+Both `--name` and `--author` are optional whereas `file_path` is mandatory.
+
+### Code
+
+You can also use Homer in your code. Here is an example:
+
 ```python
 from homer.analyzer import Article
-from homer.cmdline_printer import ArticlePrinter
 
 article = Article('Article name', 'Author', open('/file/path/article.txt').read())
-printer = ArticlePrinter(article)
-printer.print_article_stats()
-printer.print_paragraph_stats()
+article.print_article_stats()
+article.print_paragraph_stats()
 ```
 
 ## Tests
@@ -140,7 +156,7 @@ of World Bank Reports,
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+Please make sure to update tests as appropriate. Also, add your name under `Authors` section of the `readme` file.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
