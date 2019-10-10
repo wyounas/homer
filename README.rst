@@ -27,7 +27,7 @@ Running Homer from the command line gives the following insights about the artic
 * Number and list of compulsive hedgers, intensifiers, vague words.
 
 
-![Article stats](docs/article_stats.png)
+![Article stats](https://drive.google.com/uc?export=view&id=19E7MDoMObkwGrN2FceXv9qjZLzBLBg6U)
 
 ##### Paragraph Stats
 
@@ -41,7 +41,7 @@ Paragraph stats point out the following information for _each paragraph_:
 * Similarly, when the number of words is more than 25 in a sentence, then a warning highlighted in red is given.
 
 
-![Paragraph stats](docs/paragraph_stats.png)
+![Paragraph stats](https://drive.google.com/uc?export=view&id=1tnXSEh7nWQrtO3glDbtsoD_N-Q-xt2-h)
 
 ## Installation
 
@@ -71,36 +71,17 @@ First line in the above snippet creates a virtual environment named `venv` under
 
 In case you need more help with creating a virtual environment this [resource](https://docs.python.org/3/library/venv.html) can prove to be useful.
 
-### Installing libraries
-After the virtual environment is created and activated then using the following command install the required packages.
+### Installing `Homer` via Pip
+
+Install using Pip:
 
 ```bash
-pip install -r requirements.txt
+
+~/code/homer> pip install homer-text
 ```
 
-After installing required Python libraries you may need to also install these nltk resources:
-- _punkt_,  _average_perceptron_tagger_, _cmudict_ and _stopwords_
+And that's it. It should install everything i.e. required libraries, NLTK packages and homer_text itself.
 
-These can download by running the following code from the command line, after activating the virtual environment
-```Python
->>> import nltk
->>> nltk.download('punkt')
-# after punkt is install, let's install other packages one by one
->>> nltk.download('averaged_perceptron_tagger')
->>>nltk.download('cmudict')
->>> nltk.download('stopwords')
-```
-
-### Setting project path
-
-Before we can use the project we need to add it to `PYTHONPATH`. On Mac and Linux
-you can add it temporarily using command line e.g.,;
-
-```bash
-export PYTHONPATH="/~code/homer"
-```
-To add the python permanently, on Mac add the above to `~/.bash_profile` file. If you are on
-Linux add the above to `~/.bashrc`. If you are on Windows, then the [this](https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-so-it-finds-my-modules-packages) StackOverflow question has useful information.
 
 ## Usage
 

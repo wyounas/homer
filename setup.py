@@ -6,23 +6,38 @@ Homer: A text analyzer.
 """
 
 # Always prefer setuptools over distutils
-from setuptools import setup, find_packages
+import os
+from setuptools import setup
+from distutils.command.install import install as _install
 # To use a consistent encoding
 from codecs import open
-from os import path
 
-here = path.abspath(path.dirname(__file__))
+this_directory = os.path.abspath(os.path.dirname(__file__))
 
-# Get the long description from the README file
-with open(path.join(here, 'README.MD'), encoding='utf-8') as f:
-    long_description = f.read()
+
+class install(_install):
+    def run(self):
+        _install.run(self)
+        import nltk
+        nltk.download('punkt')
+        # after punkt is install, let's install other packages one by one
+        nltk.download('averaged_perceptron_tagger')
+        nltk.download('cmudict')
+        nltk.download('stopwords')
+
+
+with open(os.path.join(this_directory, 'README.rst'), encoding='utf-8') as f:
+    readme = f.read()
 
 setup(
-    name='homer',
-    version='0.9,9',
-    description='Homer: A text analyzer',
-    long_description=long_description,
-
+    name='homer_text',
+    version='0.4.1',
+    description='Homer, a text analyser in Python, can help make your text more clear, simple and useful for your readers.',
+    long_description=readme,
+    long_description_content_type='text/markdown',
+    packages=['homer'],
+    packages_dir={'homer': 'homer'},
+    include_package_data=True,
     # The project's main homepage.
     url='https://github.com/wyounas/homer',
 
@@ -50,14 +65,19 @@ setup(
 
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
-        'Programming Language :: Python :: 3.4.5',
+        'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
     ],
 
     # What does your project relate to?
-    keywords='Text Analyzer.',
+    keywords='text analyzer',
+    project_urls={
+        "Bug Tracker": "https://github.com/wyounas/homer/issues",
+        "Documentation": "https://github.com/wyounas/homer",
+        "Source Code": "https://github.com/wyounas/homer",
+    },
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
@@ -74,7 +94,6 @@ setup(
     install_requires=[
         'Click==7.0',
         'colorclass==2.2.0',
-        'mongoengine==0.17.0',
         'nltk==3.4.1',
         'Pyphen==0.9.5',
         'repoze.lru==0.7',
@@ -82,4 +101,8 @@ setup(
         'terminaltables==3.1.0',
         'textstat==0.5.6',
     ],
+    setup_requires=['nltk==3.4.1'],
+    cmdclass={'install': install}
 )
+
+
