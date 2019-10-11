@@ -65,9 +65,9 @@ I built this on Python 3.4.5. So first we need to install Python.
 
 On Mac, I used Homebrew to install Python e.g. one can use this command:
 
-```bash
-brew install python3
-```
+.. code-block:: bash
+    $ brew install python3
+
 
 To install on Windows, you can download the installer from [here](https://www.python.org/downloads/windows/). Once downloaded this installer can be run to complete Python's installation.
 
@@ -79,10 +79,10 @@ Virtual environment
 
 Now it's time to create a virtual environment (assuming you cloned the code under `~/code/homer`).
 
- ```bash
-~/code/homer> python3 -m venv venv
-~/code/homer> source venv/bin/activate
-```
+.. code-block:: bash
+    $ ~/code/homer> python3 -m venv venv
+    $ ~/code/homer> source venv/bin/activate
+
 First line in the above snippet creates a virtual environment named `venv` under `~/code/homer`. The second command activates the virtual environment.
 
 In case you need more help with creating a virtual environment this [resource](https://docs.python.org/3/library/venv.html) can prove to be useful.
@@ -92,10 +92,9 @@ Installing `Homer` via Pip
 
 Install using Pip:
 
-```bash
+.. code-block:: bash
+    $ ~/code/homer> pip install homer-text
 
-~/code/homer> pip install homer-text
-```
 
 And that's it. It should install everything i.e. required libraries, NLTK packages and homer_text itself.
 
@@ -108,9 +107,9 @@ Command line
 
 A command line utility, under the `homer` directory, has been provided. Here is an example showing how to use it:
 
-```bash
+.. code-block:: bash
 > python homer_cmd.py --name article_name --author lalala --file_path=/correct/path/to/file.txt
-```
+
 
 Both `--name` and `--author` are optional whereas `file_path` is mandatory.
 
@@ -119,13 +118,12 @@ Code
 
 You can also use Homer in your code. Here is an example:
 
-```python
-from homer.analyzer import Article
+.. code-block:: python
+    from homer.analyzer import Article
+    article = Article('Article name', 'Author', open('/file/path/article.txt').read())
+    article.print_article_stats()
+    article.print_paragraph_stats()
 
-article = Article('Article name', 'Author', open('/file/path/article.txt').read())
-article.print_article_stats()
-article.print_paragraph_stats()
-```
 
 Tests
 =====
