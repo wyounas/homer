@@ -69,9 +69,9 @@ On Mac, I used Homebrew to install Python e.g. one can use this command:
     $ brew install python3
 
 
-To install on Windows, you can download the installer from [here](https://www.python.org/downloads/windows/). Once downloaded this installer can be run to complete Python's installation.
+To install on Windows, you can download the installer from `here <https://www.python.org/downloads/windows/>`_. Once downloaded this installer can be run to complete Python's installation.
 
-For Ubuntu you might find this [resource](https://askubuntu.com/questions/802279/how-to-install-python-3-4-5-from-apt) useful.
+For Ubuntu you might find this `resource <https://askubuntu.com/questions/802279/how-to-install-python-3-4-5-from-apt>`_ useful.
 
 
 Virtual environment
@@ -85,7 +85,7 @@ Now it's time to create a virtual environment (assuming you cloned the code unde
 
 First line in the above snippet creates a virtual environment named `venv` under `~/code/homer`. The second command activates the virtual environment.
 
-In case you need more help with creating a virtual environment this [resource](https://docs.python.org/3/library/venv.html) can prove to be useful.
+In case you need more help with creating a virtual environment this `resource <https://docs.python.org/3/library/venv.html>`_ can prove to be useful.
 
 Installing `Homer` via Pip
 --------------------------
@@ -93,6 +93,7 @@ Installing `Homer` via Pip
 Install using Pip:
 
 .. code-block:: bash
+
     $ ~/code/homer> pip install homer-text
 
 
@@ -108,7 +109,8 @@ Command line
 A command line utility, under the `homer` directory, has been provided. Here is an example showing how to use it:
 
 .. code-block:: bash
-> python homer_cmd.py --name article_name --author lalala --file_path=/correct/path/to/file.txt
+
+    > python homer_cmd.py --name article_name --author lalala --file_path=/correct/path/to/file.txt
 
 
 Both `--name` and `--author` are optional whereas `file_path` is mandatory.
@@ -119,6 +121,7 @@ Code
 You can also use Homer in your code. Here is an example:
 
 .. code-block:: python
+
     from homer.analyzer import Article
     article = Article('Article name', 'Author', open('/file/path/article.txt').read())
     article.print_article_stats()
@@ -133,13 +136,13 @@ Tests can be run from the `tests` directory.
 Authors
 =======
 
-* [Waqas Younas](http://blog.wyounas.com) (waqas.younas@gmail.com)
+* `Waqas Younas <http://blog.wyounas.com>`_ (waqas.younas@gmail.com)
 
 
 Acknowledgements
 ================
 
-* Steven Pinker's [The Sense of Style: The Thinking Person's Guide to Writing in the 21st Century](https://www.amazon.com/Sense-Style-Thinking-Persons-Writing/dp/0143127799). This book gave me quite a few insights. It also prompted me to include tracking of vague words, complex hedgers and intensifiers.
+* Steven Pinker's `The Sense of Style: The Thinking Person's Guide to Writing in the 21st Century <https://www.amazon.com/Sense-Style-Thinking-Persons-Writing/dp/0143127799>`_. This book gave me quite a few insights. It also prompted me to include tracking of vague words, complex hedgers and intensifiers.
 
   - Complex hedgers: These are words such as _apparently, almost, fairly, nearly, partially, predominantly, presumably, rather, relative, seemingly, etc._
 
@@ -163,4 +166,4 @@ Please make sure to update tests as appropriate. Also, add your name under `Auth
 
 License
 =======
-[MIT](https://choosealicense.com/licenses/mit/)
+`MIT <https://choosealicense.com/licenses/mit/>`_
