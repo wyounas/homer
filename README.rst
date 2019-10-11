@@ -33,7 +33,7 @@ Running Homer from the command line gives the following insights about the artic
 .. class:: no-web
 
     .. image:: https://drive.google.com/uc?export=view&id=19E7MDoMObkwGrN2FceXv9qjZLzBLBg6U
-        :alt: HTTPie compared to cURL
+        :alt: overall stats
         :width: 100%
         :align: center
 
@@ -53,10 +53,10 @@ Paragraph stats point out the following information for each paragraph:
 .. class:: no-web
 
     .. image:: https://drive.google.com/uc?export=view&id=1tnXSEh7nWQrtO3glDbtsoD_N-Q-xt2-h
-        :alt: HTTPie compared to cURL
+        :alt: paragraph stats
         :width: 100%
         :align: center
-        
+
 
 Installation
 ============
