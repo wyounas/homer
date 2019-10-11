@@ -1,4 +1,5 @@
-# Homer
+Homer
+#####
 
 Homer is a Python package that can help make your text more clear, simple and useful for the reader.
 
@@ -12,9 +13,11 @@ I have only used it to analyze my blogs and essays and not the large corpus of t
 
 You can use Homer as a stand-alone package or on the command line. If you run it on the command line, you can get general stats on your article or essay as well as paragraph stats.
 
-## Features
+Features
+========
 
-#####  Article/Essay Stats
+Article/Essay Stats
+-------------------
 
 Running Homer from the command line gives the following insights about the article/essay:
 
@@ -27,9 +30,14 @@ Running Homer from the command line gives the following insights about the artic
 * Number and list of compulsive hedgers, intensifiers, vague words.
 
 
-![Article stats](https://drive.google.com/uc?export=view&id=19E7MDoMObkwGrN2FceXv9qjZLzBLBg6U)
+.. class:: no-web
+    .. image: https://drive.google.com/uc?export=view&id=19E7MDoMObkwGrN2FceXv9qjZLzBLBg6U
+        :alt: article stats
+        :width: 100%
+        :align: center
 
-##### Paragraph Stats
+Paragraph Stats
+---------------
 
 Paragraph stats point out the following information for _each paragraph_:
 
@@ -41,11 +49,18 @@ Paragraph stats point out the following information for _each paragraph_:
 * Similarly, when the number of words is more than 25 in a sentence, then a warning highlighted in red is given.
 
 
-![Paragraph stats](https://drive.google.com/uc?export=view&id=1tnXSEh7nWQrtO3glDbtsoD_N-Q-xt2-h)
+.. class:: no-web
+    .. image: https://drive.google.com/uc?export=view&id=1tnXSEh7nWQrtO3glDbtsoD_N-Q-xt2-h
+        :alt: paragraph stats
+        :width: 100%
+        :align: center
 
-## Installation
+Installation
+============
 
-### Python
+Python
+------
+
 I built this on Python 3.4.5. So first we need to install Python.
 
 On Mac, I used Homebrew to install Python e.g. one can use this command:
@@ -59,7 +74,8 @@ To install on Windows, you can download the installer from [here](https://www.py
 For Ubuntu you might find this [resource](https://askubuntu.com/questions/802279/how-to-install-python-3-4-5-from-apt) useful.
 
 
-### Virtual environment
+Virtual environment
+-------------------
 
 Now it's time to create a virtual environment (assuming you cloned the code under `~/code/homer`).
 
@@ -71,7 +87,8 @@ First line in the above snippet creates a virtual environment named `venv` under
 
 In case you need more help with creating a virtual environment this [resource](https://docs.python.org/3/library/venv.html) can prove to be useful.
 
-### Installing `Homer` via Pip
+Installing `Homer` via Pip
+--------------------------
 
 Install using Pip:
 
@@ -83,9 +100,11 @@ Install using Pip:
 And that's it. It should install everything i.e. required libraries, NLTK packages and homer_text itself.
 
 
-## Usage
+Usage
+=====
 
-### Command line
+Command line
+------------
 
 A command line utility, under the `homer` directory, has been provided. Here is an example showing how to use it:
 
@@ -95,7 +114,8 @@ A command line utility, under the `homer` directory, has been provided. Here is 
 
 Both `--name` and `--author` are optional whereas `file_path` is mandatory.
 
-### Code
+Code
+====
 
 You can also use Homer in your code. Here is an example:
 
@@ -107,16 +127,19 @@ article.print_article_stats()
 article.print_paragraph_stats()
 ```
 
-## Tests
+Tests
+=====
 
 Tests can be run from the `tests` directory.
 
-## Authors
+Authors
+=======
 
 * [Waqas Younas](http://blog.wyounas.com) (waqas.younas@gmail.com)
 
 
-## Acknowledgements
+Acknowledgements
+================
 
 * Steven Pinker's [The Sense of Style: The Thinking Person's Guide to Writing in the 21st Century](https://www.amazon.com/Sense-Style-Thinking-Persons-Writing/dp/0143127799). This book gave me quite a few insights. It also prompted me to include tracking of vague words, complex hedgers and intensifiers.
 
@@ -134,10 +157,12 @@ of World Bank Reports,
     - Vague words is a list of words I compiled after reading the above report.  Using these words unnecessarily, or without giving them the proper context, can make a text more abstract. These are words such as _derivative, fair value, portfolio, evaluation, strategy, competitiveness, reform, growth, capacity, progress, stability, protection, access, sustainable, etc._
 
 
-## Contributing
+Contributing
+============
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate. Also, add your name under `Authors` section of the `readme` file.
 
-## License
+License
+=======
 [MIT](https://choosealicense.com/licenses/mit/)
