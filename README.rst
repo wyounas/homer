@@ -80,8 +80,8 @@ Virtual environment
 Now it's time to create a virtual environment (assuming you cloned the code under `~/code/homer`).
 
 .. code-block:: bash
-    $ ~/code/homer> python3 -m venv venv
-    $ ~/code/homer> source venv/bin/activate
+    ~/code/homer $ python3 -m venv venv
+    ~/code/homer $ source venv/bin/activate
 
 First line in the above snippet creates a virtual environment named `venv` under `~/code/homer`. The second command activates the virtual environment.
 
@@ -94,7 +94,7 @@ Install using Pip:
 
 .. code-block:: bash
 
-    $ ~/code/homer> pip install homer-text
+    ~/code/homer $ pip install homer-text
 
 
 And that's it. It should install everything i.e. required libraries, NLTK packages and homer_text itself.
