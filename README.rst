@@ -39,7 +39,7 @@ Running Homer from the command line gives the following insights about the artic
 Paragraph Stats
 ---------------
 
-Paragraph stats point out the following information for _each paragraph_:
+Paragraph stats point out the following information for each paragraph:
 
 * Number of sentences and words.
 * Average words per sentence.
@@ -146,7 +146,7 @@ Acknowledgements
 
   - Complex hedgers: These are words such as _apparently, almost, fairly, nearly, partially, predominantly, presumably, rather, relative, seemingly, etc._
 
-  - Intensifiers: Words such as _very, highly, extremely_.
+  - Intensifiers: Words such as _very, highly, extremely.
 
 * Bankspeak:
 The Language
