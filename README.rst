@@ -1,6 +1,10 @@
 Homer
 #####
 
+.. contents::
+
+.. section-numbering::
+
 Homer is a Python package that can help make your text more clear, simple and useful for the reader.
 
 It provides information on an overall text as well as on individual paragraphs. It gives insights into readability, length of paragraphs, length of sentences, average sentences per paragraph, average words in a sentence, etc. It also tries to identify certain kind of vague words. It also tracks the frequency of "and" words in the text. (More information on all of these follows in the `Acknowledgements` section.)
