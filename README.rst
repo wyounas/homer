@@ -30,12 +30,13 @@ Running Homer from the command line gives the following insights about the artic
 * Number and list of compulsive hedgers, intensifiers, vague words.
 
 
-.. class:: no-web no-pdf
+.. class:: no-web
 
-    .. image: https://drive.google.com/uc?export=view&id=19E7MDoMObkwGrN2FceXv9qjZLzBLBg6U
-        :alt: article stats
+    .. image:: https://drive.google.com/uc?export=view&id=19E7MDoMObkwGrN2FceXv9qjZLzBLBg6U
+        :alt: HTTPie compared to cURL
         :width: 100%
         :align: center
+
 
 Paragraph Stats
 ---------------
@@ -49,13 +50,13 @@ Paragraph stats point out the following information for each paragraph:
 * If the number of sentences is more than five in a paragraph, then Homer gives a warning highlighted in red.
 * Similarly, when the number of words is more than 25 in a sentence, then a warning highlighted in red is given.
 
+.. class:: no-web
 
-.. class:: no-web no-pdf
-
-    .. image: https://drive.google.com/uc?export=view&id=1tnXSEh7nWQrtO3glDbtsoD_N-Q-xt2-h
-        :alt: paragraph stats
+    .. image:: https://drive.google.com/uc?export=view&id=1tnXSEh7nWQrtO3glDbtsoD_N-Q-xt2-h
+        :alt: HTTPie compared to cURL
         :width: 100%
         :align: center
+        
 
 Installation
 ============
