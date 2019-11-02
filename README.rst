@@ -2,7 +2,7 @@ Homer
 #####
 
 .. image:: https://img.shields.io/pypi/v/pytest-html.svg
-   :target: https://pypi.python.org/pypi/pytest-html/
+   :target: https://pypi.org/project/homer-text/
    :alt: PyPI
 
 .. image:: https://img.shields.io/badge/Made%20with-Python-1f425f.svg
