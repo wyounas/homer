@@ -3,6 +3,12 @@ Homer
 
 |made-with-python|
 
+.. code:: rst
+
+    |made-with-python|
+
+    .. |made-with-python| image:: https://img.shields.io/badge/Made%20with-Python-1f425f.svg
+       :target: https://www.python.org/
 [![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 [![PyPI version fury.io](https://badge.fury.io/py/ansicolortags.svg)](https://pypi.org/project/homer-text/)
 [![PyPI license](https://img.shields.io/pypi/l/ansicolortags.svg)](https://pypi.org/project/homer-text/)
