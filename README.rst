@@ -6,6 +6,10 @@ Homer
    :target: https://www.python.org/
    :alt: Made with Python
 
+.. image:: https://img.shields.io/pypi/pyversions/ansicolortags.svg
+   :target: https://pypi.org/project/homer-text/
+   :alt: Python versions
+
 .. image:: https://img.shields.io/pypi/v/pytest-html.svg
    :target: https://pypi.org/project/homer-text/
    :alt: PyPI
