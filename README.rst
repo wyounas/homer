@@ -6,19 +6,19 @@ Homer
    :target: https://www.python.org/
    :alt: Made with Python
 
-.. image:: https://img.shields.io/pypi/pyversions/ansicolortags.svg
+.. image:: https://img.shields.io/pypi/pyversions/homer-text
    :target: https://pypi.org/project/homer-text/
    :alt: Python versions
 
-.. image:: https://img.shields.io/pypi/v/pytest-html.svg
+.. image:: https://img.shields.io/pypi/pyversions/homer-text
    :target: https://pypi.org/project/homer-text/
    :alt: PyPI
 
-.. image:: https://img.shields.io/pypi/l/ansicolortags.svg
+.. image:: https://img.shields.io/pypi/pyversions/homer-text
    :target: https://pypi.org/project/homer-text/
    :alt: Pypi licence
 
-.. image:: https://img.shields.io/github/issues-raw/pytest-dev/pytest-html.svg
+.. image:: https://img.shields.io/github/issues-raw/homer-text
    :target: https://github.com/wyounas/homer/issues
    :alt: Issues
 
