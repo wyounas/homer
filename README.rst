@@ -10,15 +10,11 @@ Homer
    :target: https://pypi.org/project/homer-text/
    :alt: Python versions
 
-.. image:: https://img.shields.io/pypi/pyversions/homer-text
-   :target: https://pypi.org/project/homer-text/
-   :alt: PyPI
-
-.. image:: https://img.shields.io/pypi/pyversions/homer-text
+.. image:: https://img.shields.io/pypi/l/homer-text
    :target: https://pypi.org/project/homer-text/
    :alt: Pypi licence
 
-.. image:: https://img.shields.io/github/issues-raw/homer-text
+.. image:: https://img.shields.io/github/issues-raw/wyounas/homer
    :target: https://github.com/wyounas/homer/issues
    :alt: Issues
 
