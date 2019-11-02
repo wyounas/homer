@@ -1,17 +1,22 @@
 Homer
 #####
 
-.. image:: https://img.shields.io/pypi/v/pytest-html.svg
-   :target: https://pypi.org/project/homer-text/
-   :alt: PyPI
 
 .. image:: https://img.shields.io/badge/Made%20with-Python-1f425f.svg
    :target: https://www.python.org/
    :alt: Made with Python
 
+.. image:: https://img.shields.io/pypi/v/pytest-html.svg
+   :target: https://pypi.org/project/homer-text/
+   :alt: PyPI
+
 .. image:: https://img.shields.io/pypi/l/ansicolortags.svg
    :target: https://pypi.org/project/homer-text/
    :alt: Pypi licence
+
+.. image:: https://img.shields.io/github/issues-raw/pytest-dev/pytest-html.svg
+   :target: https://github.com/wyounas/homer/issues
+   :alt: Issues
 
 
 .. contents::
