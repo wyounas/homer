@@ -129,6 +129,8 @@ class Paragraph(object):
             paragraph = '\n'.join(paragraph.split('\n', 1)[1:])
         if paragraph.startswith('---\n'):
             paragraph = paragraph[4:]
+        if paragraph.startswith('['):
+            paragraph = 'Source Links'
 
         self.paragraph = paragraph
         self._first_line_num = first_line_num
