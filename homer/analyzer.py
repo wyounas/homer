@@ -118,12 +118,18 @@ class Sentence(object):
 
 class Paragraph(object):
     """
-    Represents a paragraph. Finds compulsive hedgers, intensifiers, vague words, readability scores of a paragraph and
-    various other stats.
+    Represents a paragraph. Finds compulsive hedgers, intensifiers, vague
+    words, readability scores of a paragraph and various other stats.
     """
 
     def __init__(self, paragraph, first_line_num=0):
         paragraph = paragraph.replace('—', ' ')
+
+        if paragraph.startswith('#'):
+            paragraph = '\n'.join(paragraph.split('\n', 1)[1:])
+        if paragraph.startswith('---\n'):
+            paragraph = paragraph[4:]
+
         self.paragraph = paragraph
         self._first_line_num = first_line_num
         self.tokenized_sentences = nltk.sent_tokenize(paragraph)
