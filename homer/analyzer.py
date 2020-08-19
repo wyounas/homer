@@ -122,12 +122,16 @@ class Paragraph(object):
     various other stats.
     """
 
-    def __init__(self, paragraph):
+    def __init__(self, paragraph, first_line_num=0):
         paragraph = paragraph.replace('—', ' ')
         self.paragraph = paragraph
+        self._first_line_num = first_line_num
         self.tokenized_sentences = nltk.sent_tokenize(paragraph)
         self._sentences = [Sentence(sentence) for sentence in self.tokenized_sentences]
 
+    @property
+    def first_line_num(self):
+        return self._first_line_num
 
     @property
     def sentences(self):
@@ -187,19 +191,27 @@ class Paragraph(object):
         return 'Paragraph(%r)' % self.paragraph
 
 
+def first_line_of(paragraph, text: str) -> int:
+    lines = text.split('\n')
+    for num, line in enumerate(lines):
+        if line and paragraph.startswith(line):
+            return num + 1
+    return 0
+
+
 class Article(object):
     """
     This represents a block of text, i.e. an essay, a blog or an article.
 
     Using this, we can retrieve article as well as paragraph-level stats.
     """
-    def __init__(self, name, author, text):
+    def __init__(self, name: str, author: str, text: str):
         self.name = name
         self.author = author
         # Replacing em dash and en dash
         self.text = text.replace('—', ' ')
         paragraphs = nltk.tokenize.blankline_tokenize(text)
-        self._paragraphs = [Paragraph(paragraph) for paragraph in paragraphs]
+        self._paragraphs = [Paragraph(paragraph, first_line_of(paragraph, text)) for paragraph in paragraphs]
 
     @property
     def paragraphs(self):

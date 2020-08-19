@@ -48,14 +48,14 @@ class ArticlePrinter(object):
         long_tag = Color('{red}longest{/red}')
         table_data = [
             [Color('{autocyan}Paragraph Stats{/autocyan}')],
-            ['Paragraph #', '']
+            ['Line #', '']
         ]
-        for item, para in enumerate(self.article.paragraphs):
+        for para in self.article.paragraphs:
             sentences = Color('{red}%s{/red}' % str(len(para))) if len(para) > 5 else str(len(para))
             avg_words_per_sentence = Color(
                 '{red}%s{/red}' % str(para.avg_words_per_sentence)) if para.avg_words_per_sentence > 25 else str(
                 para.avg_words_per_sentence)
-            table_data.append([item + 1,
+            table_data.append([para.first_line_num,
                                '{sentences} {sent_tag}. {words} {word_tag}. {avg_words} {avg_word_tag}. '
                                '"{longest_sent}..." is the {long_tag} sentence.'.format(
                                    sentences=sentences, sent_tag=sentence_tag, words=para.total_words,
