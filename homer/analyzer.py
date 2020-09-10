@@ -125,10 +125,10 @@ class Paragraph(object):
     def __init__(self, paragraph, first_line_num=0):
         paragraph = paragraph.replace('—', ' ')
 
-        if paragraph.startswith('#'):
-            paragraph = '\n'.join(paragraph.split('\n', 1)[1:])
         if paragraph.startswith('---\n'):
             paragraph = paragraph[4:]
+        if paragraph.startswith('#'):
+            paragraph = '\n'.join(paragraph.split('\n', 1)[1:])
         if paragraph.startswith('['):
             paragraph = 'Source Links'
 
@@ -199,12 +199,38 @@ class Paragraph(object):
         return 'Paragraph(%r)' % self.paragraph
 
 
-def first_line_of(paragraph, text: str) -> int:
+
+def first_lines_of(paragraph, text: str) -> int:
     lines = text.split('\n')
+    para = paragraph.split('\n')
+
+    max_counter = 0
+    max_startindex = None
+
+    current_counter = 0
+    current_startindex = 0
+
     for num, line in enumerate(lines):
-        if line and paragraph.startswith(line):
-            return num + 1
-    return 0
+        if not line:
+            continue
+
+        if current_counter:
+            if current_counter == len(para):
+                return current_startindex + 1
+            elif para[current_counter] == line:
+                current_counter += 1
+            else:
+                if max_counter < current_counter:
+                    max_counter = current_counter
+                    max_startindex = current_startindex
+                current_counter = 0
+                current_startindex = num
+
+        if paragraph.startswith(line):
+            current_startindex = num
+            current_counter = 1
+
+    return max_startindex or 0
 
 
 class Article(object):
@@ -219,7 +245,7 @@ class Article(object):
         # Replacing em dash and en dash
         self.text = text.replace('—', ' ')
         paragraphs = nltk.tokenize.blankline_tokenize(text)
-        self._paragraphs = [Paragraph(paragraph, first_line_of(paragraph, text)) for paragraph in paragraphs]
+        self._paragraphs = [Paragraph(paragraph, first_lines_of(paragraph, text)) for paragraph in paragraphs]
 
     @property
     def paragraphs(self):
