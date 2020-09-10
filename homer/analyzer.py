@@ -230,7 +230,7 @@ def first_lines_of(paragraph, text: str) -> int:
             current_startindex = num
             current_counter = 1
 
-    return max_startindex or 0
+    return max_startindex + 1 or 0
 
 
 class Article(object):
