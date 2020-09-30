@@ -161,6 +161,7 @@ You can also use Homer in your code. Here is an example:
 
 .. code-block:: python
 
+    # file: analyse.py
     import sys
     from homer.analyzer import Article
     from homer.cmdline_printer import ArticlePrinter
@@ -170,6 +171,11 @@ You can also use Homer in your code. Here is an example:
     ap.print_article_stats()
     ap.print_paragraph_stats()
 
+Use it like this:
+
+.. code-block:: bash
+
+    > python analyse.py text_to_analyse.md
 
 Tests
 =====
