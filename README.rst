@@ -130,6 +130,18 @@ And that's it. It should install everything i.e. required libraries, NLTK packag
 Usage
 =====
 
+First time
+-----------
+Prior to using it for the first time, make sure you have all `nltk` dictionary files:
+
+.. code-block:: python
+
+    import nltk
+    nltk.download('punkt')
+    nltk.download('cmudict')
+    nltk.download('stopwords')
+
+
 Command line
 ------------
 
