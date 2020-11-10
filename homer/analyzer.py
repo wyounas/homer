@@ -319,7 +319,7 @@ class Article(object):
 
     def get_and_frequency(self):
         round_to_two_digits = 2
-        return str(round(self.total_and_words / self.total_words * 100, round_to_two_digits)) + " %"
+        return round(self.total_and_words / self.total_words * 100, round_to_two_digits)
 
     def ten_words_with_most_syllables(self):
         """This gets us 10 words with most syllables in a text"""
