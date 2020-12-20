@@ -130,6 +130,18 @@ And that's it. It should install everything i.e. required libraries, NLTK packag
 Usage
 =====
 
+First time
+-----------
+Prior to using it for the first time, make sure you have all `nltk` dictionary files:
+
+.. code-block:: python
+
+    import nltk
+    nltk.download('punkt')
+    nltk.download('cmudict')
+    nltk.download('stopwords')
+
+
 Command line
 ------------
 
@@ -149,11 +161,21 @@ You can also use Homer in your code. Here is an example:
 
 .. code-block:: python
 
+    # file: analyse.py
+    import sys
     from homer.analyzer import Article
-    article = Article('Article name', 'Author', open('/file/path/article.txt').read())
-    article.print_article_stats()
-    article.print_paragraph_stats()
+    from homer.cmdline_printer import ArticlePrinter
 
+    article = Article('Article name', 'Author', open(sys.argv[1]).read())
+    ap = ArticlePrinter(article)
+    ap.print_article_stats()
+    ap.print_paragraph_stats()
+
+Use it like this:
+
+.. code-block:: bash
+
+    > python analyse.py text_to_analyse.md
 
 Tests
 =====
