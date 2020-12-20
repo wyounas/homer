@@ -182,16 +182,15 @@ Tests
 
 Tests can be run from the `tests` directory.
 
-Authors
-=======
+Author & Contributors
+=====================
 
-Main author
-============
+Author:
+
 
 * `Waqas Younas <http://blog.wyounas.com>`_ (waqas.younas@gmail.com)
 
-Contributors
-=============
+Contributors:
 
 
 * https://github.com/voronaam
