@@ -186,12 +186,12 @@ Authors
 =======
 
 Main author
-###########
+============
 
 * `Waqas Younas <http://blog.wyounas.com>`_ (waqas.younas@gmail.com)
 
 Contributors
-############
+=============
 
 
 * https://github.com/voronaam
