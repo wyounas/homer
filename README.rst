@@ -185,7 +185,17 @@ Tests can be run from the `tests` directory.
 Authors
 =======
 
+Main author
+###########
+
 * `Waqas Younas <http://blog.wyounas.com>`_ (waqas.younas@gmail.com)
+
+Contributors
+############
+
+
+* https://github.com/voronaam
+* https://github.com/fkarg
 
 
 Acknowledgements
@@ -198,9 +208,8 @@ Acknowledgements
   - Intensifiers: Words such as _very, highly, extremely.
 
 * Bankspeak:
-The Language
-of World Bank Reports,
-1946–2012: https://litlab.stanford.edu/LiteraryLabPamphlet9.pdf. This source also gave me a few ideas. The idea to keep track of "and" and the vague words in a text was taken from here.
+
+    The Language of World Bank Reports, 1946–2012: https://litlab.stanford.edu/LiteraryLabPamphlet9.pdf. This source also gave me a few ideas. The idea to keep track of "and" and the vague words in a text was taken from here.
 
     -  "and" frequency: Basically it is the number of times the word "and" is used in the text (given as a percentage of total text). I try to keep it under 3 %.
 
@@ -209,9 +218,11 @@ of World Bank Reports,
 
 Contributing
 ============
+
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 Please make sure to update tests as appropriate. Also, add your name under `Authors` section of the `readme` file.
+
 
 License
 =======
