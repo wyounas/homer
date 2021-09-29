@@ -94,14 +94,14 @@ setup(
     install_requires=[
         'Click==7.0',
         'colorclass==2.2.0',
-        'nltk==3.4.1',
+        'nltk==3.6.3',
         'Pyphen==0.9.5',
         'repoze.lru==0.7',
         'six==1.12.0',
         'terminaltables==3.1.0',
         'textstat==0.5.6',
     ],
-    setup_requires=['nltk==3.4.1'],
+    setup_requires=['nltk==3.6.3'],
     cmdclass={'install': install}
 )
 
