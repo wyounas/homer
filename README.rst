@@ -182,6 +182,39 @@ Tests
 
 Tests can be run from the `tests` directory.
 
+
+Users
+=====
+
+Homer is used in academia for research. It can helpful to look at existing uses of Homer to learn how you can use it to design a robust
+system for text analysis 
+
+- **Campanile, Lelio, et al.** "On the Evaluation of BDD Requirements with Text-based Metrics: The ETCS-L3 Case Study."
+  *Intelligent Decision Technologies: Proceedings of the 14th KES-IDT 2022 Conference.* Singapore: Springer Nature Singapore, 2022.
+
+- **Babanejad, Nastaran, et al.** "The role of preprocessing for word representation learning in affective tasks."
+  *IEEE Transactions on Affective Computing* 15.1 (2023): 254-272.
+
+- **Dehaki, Nastaran Babanejad.** "Enriching Word Representation Learning for Affect Detection and Affect-Aware Recommendations." (2020).
+
+If your work uses Homer, please send a PR to add it to this list!
+
+Citation
+========
+
+If you use Homer in academic work, please cite the following:
+
+.. code-block:: bibtex
+
+    @misc{homer2019,
+      author = {Waqas Younas},
+      title = {Homer: A Thorough Text Analyzer.},
+      year = {2019},
+      howpublished = {\url{https://github.com/wyounas/homer}}
+    }
+
+
+
 Author & Contributors
 =====================
 
