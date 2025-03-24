@@ -118,16 +118,28 @@ class Sentence(object):
 
 class Paragraph(object):
     """
-    Represents a paragraph. Finds compulsive hedgers, intensifiers, vague words, readability scores of a paragraph and
-    various other stats.
+    Represents a paragraph. Finds compulsive hedgers, intensifiers, vague
+    words, readability scores of a paragraph and various other stats.
     """
 
-    def __init__(self, paragraph):
+    def __init__(self, paragraph, first_line_num=0):
         paragraph = paragraph.replace('—', ' ')
+
+        if paragraph.startswith('---\n'):
+            paragraph = paragraph[4:]
+        if paragraph.startswith('#'):
+            paragraph = '\n'.join(paragraph.split('\n', 1)[1:])
+        if paragraph.startswith('['):
+            paragraph = 'Source Links'
+
         self.paragraph = paragraph
+        self._first_line_num = first_line_num
         self.tokenized_sentences = nltk.sent_tokenize(paragraph)
         self._sentences = [Sentence(sentence) for sentence in self.tokenized_sentences]
 
+    @property
+    def first_line_num(self):
+        return self._first_line_num
 
     @property
     def sentences(self):
@@ -187,19 +199,53 @@ class Paragraph(object):
         return 'Paragraph(%r)' % self.paragraph
 
 
+
+def first_lines_of(paragraph, text: str) -> int:
+    lines = text.split('\n')
+    para = paragraph.split('\n')
+
+    max_counter = 0
+    max_startindex = None
+
+    current_counter = 0
+    current_startindex = 0
+
+    for num, line in enumerate(lines):
+        if not line:
+            continue
+
+        if current_counter:
+            if current_counter == len(para):
+                return current_startindex + 1
+            elif para[current_counter] == line:
+                current_counter += 1
+            else:
+                if max_counter < current_counter:
+                    max_counter = current_counter
+                    max_startindex = current_startindex
+                current_counter = 0
+                current_startindex = num
+
+        if paragraph.startswith(line):
+            current_startindex = num
+            current_counter = 1
+
+    return max_startindex + 1 if max_startindex else 0
+
+
 class Article(object):
     """
     This represents a block of text, i.e. an essay, a blog or an article.
 
     Using this, we can retrieve article as well as paragraph-level stats.
     """
-    def __init__(self, name, author, text):
+    def __init__(self, name: str, author: str, text: str):
         self.name = name
         self.author = author
         # Replacing em dash and en dash
         self.text = text.replace('—', ' ')
         paragraphs = nltk.tokenize.blankline_tokenize(text)
-        self._paragraphs = [Paragraph(paragraph) for paragraph in paragraphs]
+        self._paragraphs = [Paragraph(paragraph, first_lines_of(paragraph, text)) for paragraph in paragraphs]
 
     @property
     def paragraphs(self):
@@ -273,7 +319,7 @@ class Article(object):
 
     def get_and_frequency(self):
         round_to_two_digits = 2
-        return str(round(self.total_and_words / self.total_words * 100, round_to_two_digits)) + " %"
+        return round(self.total_and_words / self.total_words * 100, round_to_two_digits)
 
     def ten_words_with_most_syllables(self):
         """This gets us 10 words with most syllables in a text"""
