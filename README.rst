@@ -195,7 +195,7 @@ system for text analysis.
 - **Campanile, Lelio, et al.** "On the Evaluation of BDD Requirements with Text-based Metrics: The ETCS-L3 Case Study."
   *Intelligent Decision Technologies: Proceedings of the 14th KES-IDT 2022 Conference.* Singapore: Springer Nature Singapore, 2022.
 
-- **Dehaki, Nastaran Babanejad.** "Enriching Word Representation Learning for Affect Detection and Affect-Aware Recommendations." (2020).
+- **Dehaki, Nastaran Babanejad.** "Enriching Word Representation Learning for Affect Detection and Affect-Aware Recommendations." PhD dissertation, York University, Toronto, Ontario. (2020).
 
 If your work uses Homer, please send a PR to add it to this list!
 
@@ -221,7 +221,7 @@ Author & Contributors
 Author:
 
 
-* `Waqas Younas <http://blog.wyounas.com>`_ (waqas.younas@gmail.com)
+* `Waqas Younas <http://wyounas.github.io>`_ (waqas.younas@gmail.com)
 
 Contributors:
 
