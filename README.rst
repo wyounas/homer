@@ -186,7 +186,7 @@ Tests can be run from the `tests` directory.
 Users
 =====
 
-Homer is used in academia for research. It can helpful to look at existing uses of Homer to learn how you can use it to design a robust
+Homer is used in academia for research. It can be helpful to look at existing uses of Homer to learn how you can use it to design a robust
 system for text analysis.
 
 - **Babanejad, Nastaran, et al.** "The role of preprocessing for word representation learning in affective tasks."
