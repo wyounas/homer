@@ -10,6 +10,13 @@ class ArticlePrinter(object):
 
     def print_article_stats(self):
         """This method is called to present overall article stats on a command line."""
+        and_freq = self.article.get_and_frequency()
+        print(and_freq)
+        if and_freq > 2.5:
+            and_freq = Color('{red}%s{/red}' % str(and_freq))
+        else:
+            and_freq = Color('{blue}%s{/blue}' % str(and_freq))
+
         table_data = [
             [Color('{autocyan}Overall Stats{/autocyan}')],
             ['Reading time', str(self.article.reading_time) + ' mins'],
@@ -23,7 +30,7 @@ class ArticlePrinter(object):
             ['Longest sentence', "%s..." % str(self.article.longest_sentence)[0:30]],
             ['Words in longest sentence', self.article.len_of_longest_sentence],
             ['Words', self.article.total_words],
-            ['"and" frequency"', self.article.get_and_frequency()],
+            ['"and" frequency"', and_freq + " %"],
             ['Compulsive Hedgers', len(self.article.get_compulsive_hedgers())],
             ['Intensifiers', len(self.article.get_intensifiers())],
             ['Vague words', len(self.article.get_vague_words())],
@@ -48,14 +55,14 @@ class ArticlePrinter(object):
         long_tag = Color('{red}longest{/red}')
         table_data = [
             [Color('{autocyan}Paragraph Stats{/autocyan}')],
-            ['Paragraph #', '']
+            ['Line #', '']
         ]
-        for item, para in enumerate(self.article.paragraphs):
+        for para in self.article.paragraphs:
             sentences = Color('{red}%s{/red}' % str(len(para))) if len(para) > 5 else str(len(para))
             avg_words_per_sentence = Color(
                 '{red}%s{/red}' % str(para.avg_words_per_sentence)) if para.avg_words_per_sentence > 25 else str(
                 para.avg_words_per_sentence)
-            table_data.append([item + 1,
+            table_data.append([para.first_line_num,
                                '{sentences} {sent_tag}. {words} {word_tag}. {avg_words} {avg_word_tag}. '
                                '"{longest_sent}..." is the {long_tag} sentence.'.format(
                                    sentences=sentences, sent_tag=sentence_tag, words=para.total_words,
