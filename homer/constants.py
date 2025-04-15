@@ -26,5 +26,7 @@ COMPULSIVE_HEDGERS = [
     'a touch', 'sometimes', 'mostly', 'possibly', 'might', 'a tad', 'hardly', 'seem'
 ]
 
+DOCX_EXTENSION = ".docx"
+TXT_EXTENSION = ".txt"
 
 
